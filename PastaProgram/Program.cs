@@ -7,7 +7,7 @@ class Program
 {
     public static void Main(string[] args)
     {
-
+        Funcionario p1 = new Funcionario;
         
     }
 }
