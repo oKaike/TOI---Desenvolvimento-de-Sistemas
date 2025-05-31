@@ -3,11 +3,20 @@ using MySql.Data.MySqlClient;
 using System.Diagnostics;
 using System.Drawing;
 using System.Runtime.InteropServices;
-class Program
+using System.Collections.Generic;
+using System.Linq;
+using System.IO;
+
+
+namespace PastaProgram
 {
-    public static void Main(string[] args)
+    class Program
     {
-        Funcionario p1 = new Funcionario;
-        
+        static void Main(string[] args)
+        {
+            Seguranca p1 = new Seguranca();
+
+            p1.Acesso_sg();
+        }
     }
 }

@@ -38,3 +38,4 @@
 /home/kaike0proprio/Área de trabalho/TOI/PastaProgram/obj/Debug/net8.0/PastaProgram.pdb
 /home/kaike0proprio/Área de trabalho/TOI/PastaProgram/obj/Debug/net8.0/PastaProgram.genruntimeconfig.cache
 /home/kaike0proprio/Área de trabalho/TOI/PastaProgram/obj/Debug/net8.0/ref/PastaProgram.dll
+/home/kaike0proprio/Área de trabalho/TOI/PastaProgram/obj/Debug/net8.0/PastaProgram.sourcelink.json
