@@ -1,12 +1,7 @@
 ﻿using System;
 using MySql.Data.MySqlClient;
-using System.Diagnostics;
-using System.Drawing;
-using System.Runtime.InteropServices;
-using System.Collections.Generic;
-using System.Linq;
 using System.IO;
-
+using ICSharpCode.SharpZipLib.Zip;
 
 namespace PastaProgram
 {
@@ -14,9 +9,9 @@ namespace PastaProgram
     {
         static void Main(string[] args)
         {
-            Seguranca p1 = new Seguranca();
+            Arquivos arq = new Arquivos();
 
-            p1.Acesso_sg();
+            arq.CriacaoArquivo();
         }
     }
 }

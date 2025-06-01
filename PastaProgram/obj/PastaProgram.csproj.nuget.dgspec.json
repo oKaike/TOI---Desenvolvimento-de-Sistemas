@@ -38,6 +38,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "ICSharpCode.SharpZipLib": {
+              "target": "Package",
+              "version": "[0.86.0.518, )"
+            },
             "MySql.Data": {
               "target": "Package",
               "version": "[9.3.0, )"

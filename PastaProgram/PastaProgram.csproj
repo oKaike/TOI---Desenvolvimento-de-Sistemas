@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="MySql.Data" Version="9.3.0" />
+<PackageReference Include="ICSharpCode.SharpZipLib" Version="0.86.0.518" />
   </ItemGroup>
 
 </Project>
