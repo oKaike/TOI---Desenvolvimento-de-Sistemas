@@ -6,41 +6,64 @@ using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 
 namespace PastaProgram{
-public class Arquivos{        
-        public string Nome_aq;
-        public string Finalidade_aq;
+public class Arquivos
+{
+    public string Nome_aq;
+    public string Finalidade_aq;
+    public string NovaPasta;
 
-        public void CriacaoArquivo()
+    public void CriacaoPasta()
+    {
+        Console.WriteLine("Criar Pasta (Preencha as informações abaixo):");
+        Console.Write("Nome:");
+        this.Nome_aq = Console.ReadLine();
+        Nome_aq = this.Nome_aq;
+
+        Console.Write("Finalidade:");
+        this.Finalidade_aq = Console.ReadLine();
+        Finalidade_aq = this.Finalidade_aq;
+        string desktop = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory));
+
+        this.NovaPasta = Path.Combine(desktop, Nome_aq);
+        NovaPasta = this.NovaPasta;
+
+        if (!Directory.Exists(NovaPasta))
         {
-            Console.WriteLine("Criar Pasta (Preencha as informações abaixo):");
-            Console.Write("Nome:");
-            Nome_aq = Console.ReadLine();
-
-            Console.Write("Finalidade:");
-            Finalidade_aq = Console.ReadLine();
-
-           // Caminho da área de trabalho
-            string desktop = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory));
-
-            // Caminho da nova pasta
-            string NovaPasta = Path.Combine(desktop, Nome_aq);
-
-            // Cria a pasta se ela não existir
-            if (!Directory.Exists(NovaPasta))
-            { 
-                Directory.CreateDirectory(NovaPasta);
-                Console.WriteLine("Pasta criada: " + NovaPasta);
-
-                // Cria arquivos de exemplo (opcional)
-                File.WriteAllText(Path.Combine(NovaPasta, "exemplo1.txt"), "Este é o primeiro arquivo.");
-            }
-            else
-            {
-                Console.WriteLine("A pasta já existe.");
-            }
-
-            }
-            
+            Directory.CreateDirectory(NovaPasta);
+            Console.WriteLine("Pasta criada: " + NovaPasta);
 
         }
+        else
+        {
+            Console.WriteLine("A pasta já existe.");
+        }
+
+    }
+
+    public void CriarArquivo()
+    {
+        ConexaoBD banco = new ConexaoBD();
+        using (MySqlConnection conn = banco.Conectar())
+        {
+            string query = "select Nome_fun, cpf_fun, sexo_fun from funcionarios";
+ 
+            MySqlCommand cmd = new MySqlCommand(query, conn);
+            conn.Open();
+            using var reader = cmd.ExecuteReader();
+
+            using StreamWriter escritor = new StreamWriter(NovaPasta);
+            while (reader.Read())
+            {
+            string nome = reader.GetString("Nome_fun");
+            string CPF = reader.GetString("cpf_fun");
+                    escritor.WriteLine($"Nome:{nome} e CPF:{CPF}");
+            }
+            File.WriteAllText(Path.Combine(NovaPasta, "exemplo1.txt"), "Este é o primeiro arquivo.");
+       
+        cmd.ExecuteNonQuery();
+        conn.Close();
+        }
+
+    }
+}
 }
