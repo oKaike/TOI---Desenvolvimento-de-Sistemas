@@ -46,7 +46,7 @@ namespace PastaProgram
             this.ano = Console.ReadLine();
             ano = this.ano;
 
-            Console.Write("Sexo(M = Masculino | F - Feminino):");
+            Console.Write("Sexo(M - Masculino | F - Feminino):");
             this.Sexo_sg = Console.ReadLine();
              while(this.Sexo_sg.ToUpper() != "M" && this.Sexo_sg.ToUpper() != "F"){
         

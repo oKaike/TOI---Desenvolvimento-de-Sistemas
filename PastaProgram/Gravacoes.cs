@@ -9,9 +9,9 @@ namespace PastaProgram{
     internal class Gravacoes : Arquivos
     {
 
-        public string Titulo_GRV;
-        public string gravacao;
-        public string data_gravacao;
+        public string? Titulo_GRV;
+        public string? gravacao;
+        public string? data_gravacao;
         public string? dia;
         public string? mes;
         public string? ano;
