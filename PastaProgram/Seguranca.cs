@@ -25,7 +25,6 @@ namespace PastaProgram
             Console.Write("Nome:");
             Nome_sg = Console.ReadLine();
             this.Nome_sg = Nome_sg;
-
             Console.Write("Senha:");
             Senha_sg = Console.ReadLine();
             this.Senha_sg = Senha_sg;

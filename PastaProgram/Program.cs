@@ -11,9 +11,15 @@ namespace PastaProgram
     {
         static void Main(string[] args)
         {
-            Gravacoes Grav = new Gravacoes();
-
-            Grav.ExecutarGrav();
+            Imagens IMG = new Imagens();
+            Arquivos SLV = new Arquivos();
+            Gravacoes GRV = new Gravacoes();
+            GRV.InserirGrav();
+            GRV.salvarGrav();
+            IMG.InserirIMG();
+            IMG.SalvarImagem();
+            SLV.CriacaoPasta();
+            SLV.CriarArquivo(IMG.DadosIMG, GRV.gravacao);
             //string videoUrl = "/home/kaike0proprio/Imagens/Capturas de tela/mongo.png";
 
 
