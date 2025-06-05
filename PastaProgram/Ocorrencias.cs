@@ -13,13 +13,16 @@ namespace PastaProgram
         public int? nivel_risco;
         public string? data_hora_ocorrido;
         public string? dia_oc;
+        public string? ano_oc;
         public string? mes_oc;
         public string? hora_oc;
         public string? min_oc;
         public string? seg_oc;
-        public string? envolvidos;
+        public string? nome_envolvidos;
         public string? RegistradoPor;
         public string? val_nivel_risco;
+        public int? a;
+        public string?[] qtade_evolvidos;
 
 
 
@@ -47,44 +50,60 @@ namespace PastaProgram
             {
                 if (nivel_risco == 1)
                 {
-                    string val_nivel_risco = "Baixo";
+                    string val_nivel_risco = "baixo";
                 }
                 if (nivel_risco == 2)
                 {
-                    string val_nivel_risco = "Medio";
+                    string val_nivel_risco = "medio";
                 }
                 if (nivel_risco == 3)
                 {
-                    string val_nivel_risco = "Grande";
+                    string val_nivel_risco = "grande";
                     this.val_nivel_risco = val_nivel_risco;
 
                 }
                 if (nivel_risco == 4)
                 {
-                    string val_nivel_risco = "Grande";
+                    string val_nivel_risco = "auto Risco";
                     this.val_nivel_risco = val_nivel_risco;
                 }
             }
-            Console.Write("Data do ocorrido(Preencha os seis campos se possivel):");
+            Console.Write("Data do ocorrido(Preencha os todos os campos se possivel):");
+            Console.Write("Ano:");
+            ano_oc = Console.ReadLine();
+            this.ano_oc = ano_oc;
+
+            Console.Write("Mẽs:");
+            mes_oc = Console.ReadLine();
+            this.mes_oc = mes_oc;
+
             Console.Write("Dia:");
             dia_oc = Console.ReadLine();
             this.dia_oc = dia_oc;
-
-            Console.Write("Mês:");
-            mes_oc = Console.ReadLine();
-            this.mes_oc = mes_oc;
 
             Console.Write("Horas:");
             hora_oc = Console.ReadLine();
             this.hora_oc = hora_oc;
 
-            Console.Write("Minutos:");
+            Console.Write("Minutos(Opcional):");
             min_oc = Console.ReadLine();
             this.min_oc = min_oc;
+            if (string.IsNullOrWhiteSpace(min_oc)) min_oc = "00";
 
-            Console.Write("Minutos:");
+            Console.Write("Segundos(Opcional):");
             seg_oc = Console.ReadLine();
             this.seg_oc = seg_oc;
+            if (string.IsNullOrWhiteSpace(seg_oc)) seg_oc = "00";
+
+            Console.Write("Quantos Envolvidos:");
+            a = int.Parse(Console.ReadLine()!);
+            this.a = a;
+            this.qtade_evolvidos = new string[(int)a]; ;
+
+            data_hora_ocorrido = $"{ano_oc}-{mes_oc.PadLeft(2, '0')}-{dia_oc.PadLeft(2, '0')} {hora_oc.PadLeft(2, '0')}:{min_oc.PadLeft(2, '0')}:{seg_oc.PadLeft(2, '0')}";
+            this.data_hora_ocorrido = data_hora_ocorrido;
+
+            
         }
     }
 }
