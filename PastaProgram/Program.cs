@@ -22,8 +22,8 @@ namespace PastaProgram
             //SLV.CriarArquivo(IMG.DadosIMG, GRV.gravacao);
             //string videoUrl = "/home/kaike0proprio/Imagens/Capturas de tela/mongo.png";
             Ocorrencias oc = new Ocorrencias();
-            oc.RegistradoOcorrencia();
-
+            oc.RegistrandoOcorrencia();
+            oc.OcorrenciaBanco();
             // Process.Start(new ProcessStartInfo
             //{
             //FileName = videoUrl,

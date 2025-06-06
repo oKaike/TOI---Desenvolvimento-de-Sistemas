@@ -7,16 +7,19 @@ namespace PastaProgram
 {
     internal class Imagens
     {
-        public string NomeIMG;
-        public string DadosIMG;
+        public string? NomeIMG;
+        public string? NomeIMG_ART;
+        public string? DadosIMG;
         public string? dia;
         public string? mes;
         public string? ano;
         public string? data_gravacao;
         public void InserirIMG()
         {
-            Console.WriteLine("Preencha as informação:");
-            this.DadosIMG = "/home/kaike0proprio/Imagens/Capturas de tela/mongo.png";
+            Console.WriteLine("Preencha as informação(OBS: deixe a imagem que vc deseja colocar no banco, na Área de trabalho/Desktop):");
+            Console.Write("Digite o nome da imagem:");
+            this.NomeIMG_ART = Console.ReadLine();
+            this.DadosIMG = $"/home/kaike0proprio/Pasta pessoal/Área de trabalho/{NomeIMG_ART}";
             DadosIMG = this.DadosIMG;
 
             Console.Write("Titulo:");
