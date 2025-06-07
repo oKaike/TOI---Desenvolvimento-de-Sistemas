@@ -86,6 +86,31 @@ namespace PastaProgram
             RegistradoPor = Console.ReadLine();
 
         }
+        public void SalvarProblema()
+        {
+             ConexaoBD banco = new ConexaoBD();
+            using (MySqlConnection conn = banco.Conectar())
+            {
+                string query = "insert into ocorrencias(tipo_oc, descricao_oc, local_caso, nivel_risco, data_hora_ocorrido, nome_envolvido, registradopor, qtdade_envolvidos ) VALUES (@tipo_oc, @descricao_oc, @local_caso,@nivel_risco,@data_hora_ocorrido,@nome_envolvido,@registradopor,@qtdade_envolvidos)";
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+
+                cmd.Parameters.AddWithValue("@tipo_oc", tipo_oc);
+                cmd.Parameters.AddWithValue("@descricao_oc", descricao_oc);
+                cmd.Parameters.AddWithValue("@local_caso", local_caso);
+                cmd.Parameters.AddWithValue("@nivel_risco", val_nivel_risco);
+                cmd.Parameters.AddWithValue("@data_hora_ocorrido", data_hora_ocorrido);
+                cmd.Parameters.AddWithValue("@nome_envolvido", nome_envolvidos);
+                cmd.Parameters.AddWithValue("@registradopor", RegistradoPor);
+                cmd.Parameters.AddWithValue("@qtdade_envolvidos", qtade_evolvidos.Length);
+
+
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                conn.Close();
+
+            }
+        }
         }
 
 }
