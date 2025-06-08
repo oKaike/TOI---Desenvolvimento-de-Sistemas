@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PastaProgram")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9b9539ce52df52131852371b3d0a41c22b8c1e8f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9fc14444196b10abf72e917195209b16569fde94")]
 [assembly: System.Reflection.AssemblyProductAttribute("PastaProgram")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PastaProgram")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

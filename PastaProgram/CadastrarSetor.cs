@@ -44,8 +44,9 @@ namespace PastaProgram
             using (MySqlConnection conn = banco.Conectar())
             {
                 Console.Write("Deletar Setor(Preencha as informações)\n");
+                Console.Write("Nome:");
                 string nome_setorex = Console.ReadLine();
-                
+
                 string query = "delete from CadastrarSetor where nome_setor = @nome_setor";
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@nome_setor", nome_setorex);

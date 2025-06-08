@@ -91,7 +91,17 @@ namespace PastaProgram
         {
              ConexaoBD banco = new ConexaoBD();
             using (MySqlConnection conn = banco.Conectar())
-            { 
+            {
+
+                string query = "insert into arquivos(nome_aq, finalidade_aq) values(@nome_aq,@finalidade_aq)";
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@nome_aq",Nome_aq );
+                cmd.Parameters.AddWithValue("@finalidade_aq", Finalidade_aq);
+
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                conn.Close();
             
             }
         }

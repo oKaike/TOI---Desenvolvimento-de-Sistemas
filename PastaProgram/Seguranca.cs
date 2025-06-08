@@ -17,6 +17,40 @@ namespace PastaProgram
         public string? dia;
         public string? mes;
         public string? ano;
+
+        public void DefinirLimiteMaximoSegurancas()
+{
+    Console.Write("Quantos seguranças podem ser cadastrados no sistema? ");
+    int limiteMaximo = int.Parse(Console.ReadLine());
+
+    ConexaoBD banco = new ConexaoBD();
+    using (MySqlConnection conn = banco.Conectar())
+    {
+        conn.Open();
+
+        // Verifica se já existe um limite cadastrado
+        string checkQuery = "select count(*) from Configuracoes";
+        MySqlCommand checkCmd = new MySqlCommand(checkQuery, conn);
+        int count = Convert.ToInt32(checkCmd.ExecuteScalar());
+
+        if (count > 0)
+        {
+            Console.WriteLine("O limite já foi definido anteriormente e não pode ser alterado.");
+            return;
+        }
+
+        // Insere o limite
+        string insertQuery = "INSERT INTO Configuracoes (limiteMaximoSG) VALUES (@limite)";
+        MySqlCommand insertCmd = new MySqlCommand(insertQuery, conn);
+        insertCmd.Parameters.AddWithValue("@limite", limiteMaximo);
+        insertCmd.ExecuteNonQuery();
+
+        Console.WriteLine("Limite cadastrado com sucesso.");
+    }
+}
+
+
+
         public void CadastrarSg()
         {
             Console.WriteLine("Você escolheu cadastrar um novo segurança");
@@ -48,18 +82,21 @@ namespace PastaProgram
 
             Console.Write("Sexo(M - Masculino | F - Feminino):");
             this.Sexo_sg = Console.ReadLine();
-             while(this.Sexo_sg.ToUpper() != "M" && this.Sexo_sg.ToUpper() != "F"){
-        
+            while (this.Sexo_sg.ToUpper() != "M" && this.Sexo_sg.ToUpper() != "F")
+            {
+
                 Console.Write("Você digitou errado. Digite 'F' ou 'M':");
                 this.Sexo_sg = Console.ReadLine();
             }
-            if(this.Sexo_sg.ToUpper() == "M"){
+            if (this.Sexo_sg.ToUpper() == "M")
+            {
                 Sexo_sg = "Masculino";
             }
-            else if(this.Sexo_sg.ToUpper() == "F"){
+            else if (this.Sexo_sg.ToUpper() == "F")
+            {
                 Sexo_sg = "Feminino";
             }
-           this.idade_sg = $"{ano}-{mes}-{dia}";
+            this.idade_sg = $"{ano}-{mes}-{dia}";
             idade_sg = this.idade_sg;
         }
 
@@ -103,10 +140,10 @@ namespace PastaProgram
                 cmd.ExecuteNonQuery();
                 conn.Close();
             }
+        }
                 public void ExcluirSG() {
                     
                 }
 
         }
     }
-}
