@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
@@ -49,9 +50,9 @@ namespace PastaProgram
                 //Passar conteudo para a pasta
                 if (!string.IsNullOrWhiteSpace(DadosIMG))
                 {
-                    string query = "select DadosIMG from imagens";
+                    string queryIMG = "select DadosIMG from imagens";
 
-                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    MySqlCommand cmd = new MySqlCommand(queryIMG, conn);
                     conn.Open();
                     using var reader = cmd.ExecuteReader();
 
@@ -68,9 +69,9 @@ namespace PastaProgram
                 }
                 else if (!string.IsNullOrWhiteSpace(gravacao))
                 {
-                    string query = "select gravacao from gravacoes";
-                    MySqlCommand cmd = new MySqlCommand(query, conn);
-       
+                    string queryGrav = "select gravacao from gravacoes";
+                    MySqlCommand cmd = new MySqlCommand(queryGrav, conn);
+
                     conn.Open();
                     using var reader = cmd.ExecuteReader();
                     File.WriteAllText(Path.Combine(NovaPasta, $"{gravacao}"), "Este é o primeiro arquivo.");
@@ -78,6 +79,20 @@ namespace PastaProgram
                     conn.Close();
                 }
 
+
+            }
+        }
+        public void DeletarArquivo()
+        {
+
+        }
+
+        public void SalvarDados()
+        {
+             ConexaoBD banco = new ConexaoBD();
+            using (MySqlConnection conn = banco.Conectar())
+            { 
+            
             }
         }
     }

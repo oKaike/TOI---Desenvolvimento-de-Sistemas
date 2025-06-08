@@ -46,7 +46,7 @@ namespace PastaProgram
             nivel_risco = int.Parse(Console.ReadLine());
             this.nivel_risco = nivel_risco;
 
-            while (nivel_risco != 1 && nivel_risco!= 2 && nivel_risco!= 3 && nivel_risco!= 4)
+            while (nivel_risco != 1 && nivel_risco != 2 && nivel_risco != 3 && nivel_risco != 4)
             {
                 if (nivel_risco == 1)
                 {
@@ -66,7 +66,7 @@ namespace PastaProgram
                     this.val_nivel_risco = val_nivel_risco;
 
                 }
-                else if(nivel_risco == 4)
+                else if (nivel_risco == 4)
                 {
                     val_nivel_risco = "auto_risco";
                     this.val_nivel_risco = val_nivel_risco;
@@ -155,6 +155,11 @@ namespace PastaProgram
 
             }
         }
+        public void ApagarOC()
+        {
+                    
+        }
+
     }
 }
 

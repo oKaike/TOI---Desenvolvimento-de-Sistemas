@@ -86,22 +86,27 @@ namespace PastaProgram
             }
         }
 
-        public void SalvarDados(){
-            ConexaoBD banco =  new ConexaoBD();
+        public void SalvarDados()
+        {
+            ConexaoBD banco = new ConexaoBD();
             using (MySqlConnection conn = banco.Conectar())
             {
-           string query = "INSERT INTO SegurancaUser(Nome_sg,Sexo_sg,Senha_sg,cpf,data_nasc_sg) VALUES (@nome_sg,@sexo_sg,@senha_sg,@cpf_sg,@data_nasc_sg)";
-           MySqlCommand cmd = new MySqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@nome_sg",this.Nome_sg);
+                string query = "INSERT INTO SegurancaUser(Nome_sg,Sexo_sg,Senha_sg,cpf,data_nasc_sg) VALUES (@nome_sg,@sexo_sg,@senha_sg,@cpf_sg,@data_nasc_sg)";
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@nome_sg", this.Nome_sg);
                 cmd.Parameters.AddWithValue("@cpf_sg", this.cpf_sg);
-                cmd.Parameters.AddWithValue("@sexo_sg",this.Sexo_sg);
-                cmd.Parameters.AddWithValue("@senha_sg",this.Senha_sg);
-                cmd.Parameters.AddWithValue("@data_nasc_sg",this.idade_sg);
+                cmd.Parameters.AddWithValue("@sexo_sg", this.Sexo_sg);
+                cmd.Parameters.AddWithValue("@senha_sg", this.Senha_sg);
+                cmd.Parameters.AddWithValue("@data_nasc_sg", this.idade_sg);
 
                 conn.Open();
                 cmd.ExecuteNonQuery();
                 conn.Close();
-        }
+            }
+                public void ExcluirSG() {
+                    
+                }
+
         }
     }
 }

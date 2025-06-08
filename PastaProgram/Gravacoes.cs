@@ -93,8 +93,9 @@ namespace PastaProgram{
             }
         }
 
-
-        
-        
+        public void ExcluirGrav()
+        {
+            
+        }        
     }
 }

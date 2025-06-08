@@ -26,7 +26,7 @@ namespace PastaProgram
             this.NomeIMG = Console.ReadLine();
             NomeIMG = this.NomeIMG;
 
-            Console.WriteLine("Data que a imagem foi enviada sera salva automaticamente");
+            Console.WriteLine("Data que a imagem foi enviada será salva automaticamente");
             Console.WriteLine("Pressione qualquer tecla para continuar...");
             Console.ReadKey();
 
@@ -52,10 +52,13 @@ namespace PastaProgram
 
         public void EnviarArquivo()
         {
-            
+
         }
-    
-            }
+        public void ApagarIMG()
+        {
+                    
+        }
 
 
+ }
 }

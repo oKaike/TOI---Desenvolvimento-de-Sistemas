@@ -14,8 +14,8 @@ namespace PastaProgram
         public string? dia_pr;
         public string? ano_pr;
         public string? mes_pr;
-        string id_fun;
-        public string? setor_ocorrencia;
+        public string? DataRegistro;
+        public string? setor_pr;
         public string? local_problema;
         public string? RegistradoPor;
         public string? val_nivel_risco;
@@ -91,18 +91,16 @@ namespace PastaProgram
              ConexaoBD banco = new ConexaoBD();
             using (MySqlConnection conn = banco.Conectar())
             {
-                string query = "insert into ocorrencias(tipo_oc, descricao_oc, local_caso, nivel_risco, data_hora_ocorrido, nome_envolvido, registradopor, qtdade_envolvidos ) VALUES (@tipo_oc, @descricao_oc, @local_caso,@nivel_risco,@data_hora_ocorrido,@nome_envolvido,@registradopor,@qtdade_envolvidos)";
+                string query = "insert into problemas(titulo_pr, descricao, nivel_risco, data_pr, setor_pr ) VALUES (@titulo_pr, @descricao_pr, @local_caso,@nivel_risco,@data_pr,@setor_pr, @registradopor)";
                 MySqlCommand cmd = new MySqlCommand(query, conn);
 
-                cmd.Parameters.AddWithValue("@tipo_oc", tipo_oc);
-                cmd.Parameters.AddWithValue("@descricao_oc", descricao_oc);
-                cmd.Parameters.AddWithValue("@local_caso", local_caso);
+                cmd.Parameters.AddWithValue("@titulo_pr", titulo_pr);
+                cmd.Parameters.AddWithValue("@descricao_pr", descricao_pr);
+                cmd.Parameters.AddWithValue("@local_problema", local_problema);
                 cmd.Parameters.AddWithValue("@nivel_risco", val_nivel_risco);
-                cmd.Parameters.AddWithValue("@data_hora_ocorrido", data_hora_ocorrido);
-                cmd.Parameters.AddWithValue("@nome_envolvido", nome_envolvidos);
+                cmd.Parameters.AddWithValue("@data_pr", data_problema);
+                cmd.Parameters.AddWithValue("@setor_pr", setor_pr);
                 cmd.Parameters.AddWithValue("@registradopor", RegistradoPor);
-                cmd.Parameters.AddWithValue("@qtdade_envolvidos", qtade_evolvidos.Length);
-
 
 
                 conn.Open();
