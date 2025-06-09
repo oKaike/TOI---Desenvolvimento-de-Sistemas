@@ -17,37 +17,38 @@ namespace PastaProgram
         public string? dia;
         public string? mes;
         public string? ano;
-
+        public int count = 0;
+        public int i = 3;
         public void DefinirLimiteMaximoSegurancas()
-{
-    Console.Write("Quantos seguranças podem ser cadastrados no sistema? ");
-    int limiteMaximo = int.Parse(Console.ReadLine());
-
-    ConexaoBD banco = new ConexaoBD();
-    using (MySqlConnection conn = banco.Conectar())
-    {
-        conn.Open();
-
-        // Verifica se já existe um limite cadastrado
-        string checkQuery = "select count(*) from Configuracoes";
-        MySqlCommand checkCmd = new MySqlCommand(checkQuery, conn);
-        int count = Convert.ToInt32(checkCmd.ExecuteScalar());
-
-        if (count > 0)
         {
-            Console.WriteLine("O limite já foi definido anteriormente e não pode ser alterado.");
-            return;
+            Console.Write("Quantos seguranças podem ser cadastrados no sistema? ");
+            int limiteMaximo = int.Parse(Console.ReadLine());
+
+            ConexaoBD banco = new ConexaoBD();
+            using (MySqlConnection conn = banco.Conectar())
+            {
+                conn.Open();
+
+                // Verifica se já existe um limite cadastrado
+                string checkQuery = "select count(*) from Configuracoes";
+                MySqlCommand checkCmd = new MySqlCommand(checkQuery, conn);
+                int count = Convert.ToInt32(checkCmd.ExecuteScalar());
+
+                if (count > 0)
+                {
+                    Console.WriteLine("O limite já foi definido anteriormente e não pode ser alterado.");
+                    return;
+                }
+
+                // Insere o limite
+                string insertQuery = "INSERT INTO Configuracoes (limiteMaximoSG) VALUES (@limite)";
+                MySqlCommand insertCmd = new MySqlCommand(insertQuery, conn);
+                insertCmd.Parameters.AddWithValue("@limite", limiteMaximo);
+                insertCmd.ExecuteNonQuery();
+
+                Console.WriteLine("Limite cadastrado com sucesso.");
+            }
         }
-
-        // Insere o limite
-        string insertQuery = "INSERT INTO Configuracoes (limiteMaximoSG) VALUES (@limite)";
-        MySqlCommand insertCmd = new MySqlCommand(insertQuery, conn);
-        insertCmd.Parameters.AddWithValue("@limite", limiteMaximo);
-        insertCmd.ExecuteNonQuery();
-
-        Console.WriteLine("Limite cadastrado com sucesso.");
-    }
-}
 
 
 
@@ -101,24 +102,47 @@ namespace PastaProgram
         }
 
         public void Acesso_sg() {
-           Console.Write("Digite seu nome:");
-           Nome_sg = Console.ReadLine();
-            Console.Write("Digite sua senha:");
-           Senha_sg = Console.ReadLine();
 
-            ConexaoBD banco =  new ConexaoBD();
-            using (MySqlConnection conn = banco.Conectar()){
-               string ChecarSenha = "select Senha_sg from SegurancaUser where Senha_sg = @Senha_sg";
-                          MySqlCommand cmd = new MySqlCommand(ChecarSenha, conn);
+            while (count < 0 || i > 0)
+            {
+                i--;
+                Console.Write("Digite seu nome:");
+                Nome_sg = Console.ReadLine();
+                Console.Write("Digite sua senha:");
+                Senha_sg = Console.ReadLine();
 
-               cmd.Parameters.AddWithValue("@senha_sg", Senha_sg);
-               
-                conn.Open();
-                int count = Convert.ToInt32(cmd.ExecuteScalar());
+                ConexaoBD banco = new ConexaoBD();
+                using (MySqlConnection conn = banco.Conectar())
+                {
+                    string ChecarSenha = "select Senha_sg from SegurancaUser where Senha_sg = @Senha_sg";
+                    MySqlCommand cmd = new MySqlCommand(ChecarSenha, conn);
 
-                conn.Close();
-                if( count > 0){
-                    Console.WriteLine("Agora Você pode acessar o conteudo avançado");
+                    cmd.Parameters.AddWithValue("@Senha_sg", Senha_sg);
+
+                    conn.Open();
+                    count = Convert.ToInt32(cmd.ExecuteScalar());
+                    this.count = count;
+
+                    conn.Close();
+                    if (count > 0)
+                    {
+                        Console.WriteLine("Agora Você pode acessar o conteudo avançado");
+                        i = 0;
+                    }
+                    else
+                    {
+                        Console.Write($"\nSenha errada, você tem {i}/3\n");
+                        System.Threading.Thread.Sleep(1800);
+
+                        if (i == 0 && count == 0)
+                        {
+                            Console.Write("Você excedeu o numero de tentativas, você sera levado ao inicio em alguns segundos :)");
+                            System.Threading.Thread.Sleep(2500);
+
+                            TOI T = new TOI();
+                            T.ExecutarTOI();
+                        }
+                    }
                 }
             }
         }

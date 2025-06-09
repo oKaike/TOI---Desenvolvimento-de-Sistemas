@@ -4,20 +4,25 @@ using System.Diagnostics;
 using System.Drawing;
 using PastaProgram;
 using System.IO;
+using Google.Protobuf;
 
 namespace PastaProgram{
     internal class Gravacoes : Arquivos
     {
 
         public string? Titulo_GRV;
+        public string? nome_grav;
         public string? gravacao;
         public string? data_gravacao;
         public string? dia;
         public string? mes;
         public string? ano;
         public void InserirGrav() {
-            Console.WriteLine("Preencha as informação:");
-            this.gravacao = "/home/kaike0proprio/Imagens/Capturas de tela/mongo.png";
+            Console.WriteLine("Preencha as informação sobre a grvação(OBS: Deixe a gravação na area de trabalho/desktop antes de passa-la para o banco de dados):");
+            Console.Write("Nome da gravação:");
+            nome_grav = Console.ReadLine();
+
+            this.gravacao = $"/home/kaike0proprio/Imagens/Capturas de tela/{nome_grav}";
             gravacao = this.gravacao;
 
             Console.Write("Titulo:");

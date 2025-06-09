@@ -1,5 +1,6 @@
 using System;
 using MySql.Data.MySqlClient;
+using System.Collections.Generic;
 using PastaProgram;
 namespace PastaProgram
 {
@@ -58,8 +59,49 @@ namespace PastaProgram
             data_nasc_fun = this.data_nasc_fun;
 
             Console.Write("Setor: ");
-            this.setor_fun = Console.ReadLine();
-            setor_fun = this.setor_fun;
+            ConexaoBD banco = new ConexaoBD();
+        using (MySqlConnection conn = banco.Conectar())
+        {
+            string query = "select id_setor, nome_setor from CadastrarSetor";
+            MySqlCommand cmd = new MySqlCommand(query, conn);
+
+            conn.Open();
+            MySqlDataReader reader = cmd.ExecuteReader();
+
+            // Dicionário para guardar as opções
+            Dictionary<int, string> opcoes = new Dictionary<int, string>();
+            int opcaoNumero = 1;
+
+            Console.WriteLine("Escolha um setor:");
+
+            while (reader.Read())
+            {
+                int id = reader.GetInt32("id_setor");
+                string nome = reader.GetString("nome_setor");
+
+                Console.WriteLine($"{opcaoNumero} - {nome}");
+                opcoes[opcaoNumero] = nome; // Guarda a relação opção -> id do setor
+                opcaoNumero++;
+            }
+
+            reader.Close();
+            conn.Close();
+
+            Console.Write("Digite o número correspondente: ");
+            int escolha = int.Parse(Console.ReadLine());
+
+            if (opcoes.ContainsKey(escolha))
+            {
+                string SetorNome = opcoes[escolha];
+                    this.setor_fun = SetorNome;
+                Console.WriteLine($"Você escolheu o setor com ID: {SetorNome}");
+                // Aqui você pode usar esse ID para fazer ações relacionadas ao funcionário
+            }
+            else
+            {
+                Console.WriteLine("Opção inválida.");
+            }
+        }
 
 
 
