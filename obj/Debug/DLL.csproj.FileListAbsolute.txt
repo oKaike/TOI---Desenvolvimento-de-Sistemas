@@ -1,0 +1,10 @@
+C:\Users\Jefferson Correia\source\repos\DLL\DLL\obj\Debug\DLL.csproj.AssemblyReference.cache
+C:\Users\Jefferson Correia\source\repos\DLL\DLL\obj\Debug\DLL.csproj.CoreCompileInputs.cache
+C:\Users\Jefferson Correia\source\repos\DLL\DLL\bin\Debug\DLL.dll
+C:\Users\Jefferson Correia\source\repos\DLL\DLL\bin\Debug\DLL.pdb
+C:\Users\Jefferson Correia\source\repos\DLL\DLL\bin\Debug\MySql.Data.dll
+C:\Users\Jefferson Correia\source\repos\DLL\DLL\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\Jefferson Correia\source\repos\DLL\DLL\bin\Debug\MySql.Data.xml
+C:\Users\Jefferson Correia\source\repos\DLL\DLL\obj\Debug\DLL.csproj.Up2Date
+C:\Users\Jefferson Correia\source\repos\DLL\DLL\obj\Debug\DLL.dll
+C:\Users\Jefferson Correia\source\repos\DLL\DLL\obj\Debug\DLL.pdb
