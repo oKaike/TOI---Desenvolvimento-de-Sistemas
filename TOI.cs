@@ -17,7 +17,7 @@ namespace DLL_TOI
             string opcao = "";
             while (opcao.ToUpper() != "S")
             {
-                Console.WriteLine("O que você gostaria de fazer no sistema\n C -> Cadastrar Segurança\n L -> Logar Como Segurança\n 1 -> Cadastrar Funcionario\n 2 -> Cadastrar Setor\n 3 -> Problemas\n 4 -> Ocorrencias\n 5 -> Adcionar Imagem\n 6 -> Configurações\n S -> Sair ");
+                Console.WriteLine("O que você gostaria de fazer no sistema\n C -> Cadastrar Segurança\n L -> Logar Como Segurança\n 1 -> Cadastrar Funcionario\n 2 -> Cadastrar Setor\n 3 -> Problemas\n 4 -> Ocorrencias\n 5 -> Excluir\n S -> Sair ");
                 Console.Write("Escolha uma opção: ");
                 opcao = Console.ReadLine();
 
@@ -125,6 +125,8 @@ namespace DLL_TOI
 
                         if (opcao == "5")
                         {
+                            Console.WriteLine("Escolha uma das opções:");
+                            Console.WriteLine("Você escolheu excluir um arquivo:");
 
                         }
                     }
