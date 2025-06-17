@@ -8,3 +8,14 @@ C:\Users\Jefferson Correia\source\repos\DLL\DLL\bin\Debug\MySql.Data.xml
 C:\Users\Jefferson Correia\source\repos\DLL\DLL\obj\Debug\DLL.csproj.Up2Date
 C:\Users\Jefferson Correia\source\repos\DLL\DLL\obj\Debug\DLL.dll
 C:\Users\Jefferson Correia\source\repos\DLL\DLL\obj\Debug\DLL.pdb
+C:\Users\Aluno\Desktop\TOII\TOI---Desenvolvimento-de-Sistemas\bin\Debug\DLL.dll
+C:\Users\Aluno\Desktop\TOII\TOI---Desenvolvimento-de-Sistemas\bin\Debug\DLL.pdb
+C:\Users\Aluno\Desktop\TOII\TOI---Desenvolvimento-de-Sistemas\bin\Debug\System.Memory.dll
+C:\Users\Aluno\Desktop\TOII\TOI---Desenvolvimento-de-Sistemas\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\Aluno\Desktop\TOII\TOI---Desenvolvimento-de-Sistemas\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\Aluno\Desktop\TOII\TOI---Desenvolvimento-de-Sistemas\bin\Debug\MySql.Data.xml
+C:\Users\Aluno\Desktop\TOII\TOI---Desenvolvimento-de-Sistemas\obj\Debug\DLL.csproj.AssemblyReference.cache
+C:\Users\Aluno\Desktop\TOII\TOI---Desenvolvimento-de-Sistemas\obj\Debug\DLL.csproj.CoreCompileInputs.cache
+C:\Users\Aluno\Desktop\TOII\TOI---Desenvolvimento-de-Sistemas\obj\Debug\DLL.csproj.Up2Date
+C:\Users\Aluno\Desktop\TOII\TOI---Desenvolvimento-de-Sistemas\obj\Debug\DLL.dll
+C:\Users\Aluno\Desktop\TOII\TOI---Desenvolvimento-de-Sistemas\obj\Debug\DLL.pdb

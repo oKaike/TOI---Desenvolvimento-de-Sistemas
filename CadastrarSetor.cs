@@ -50,7 +50,7 @@ namespace DLL
                     conn.Open();
 
                     // 1. Listar setores
-                    string queryListar = "SELECT id, nome_setor FROM CadastrarSetor";
+                    string queryListar = "SELECT id_setor, nome_setor FROM CadastrarSetor";
                     MySqlCommand cmdListar = new MySqlCommand(queryListar, conn);
 
                     using (MySqlDataReader reader = cmdListar.ExecuteReader())
@@ -58,7 +58,7 @@ namespace DLL
                         Console.WriteLine("Setores disponíveis:\n");
                         while (reader.Read())
                         {
-                            int id = reader.GetInt32("id");
+                            int id = reader.GetInt32("id_setor");
                             string nome = reader.GetString("nome_setor");
                             Console.WriteLine($"ID: {id} | Nome: {nome}");
                         }

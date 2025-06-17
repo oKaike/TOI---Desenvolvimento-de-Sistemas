@@ -133,7 +133,7 @@ namespace DLL
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"❌ Erro: {ex.Message}");
+                    Console.WriteLine($"Erro: {ex.Message}");
                 }
                 finally
                 {

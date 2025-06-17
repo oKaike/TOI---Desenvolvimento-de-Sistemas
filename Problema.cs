@@ -100,7 +100,7 @@ namespace DLL
 
                 cmd.Parameters.AddWithValue("@titulo_pr", titulo_pr);
                 cmd.Parameters.AddWithValue("@descricao_pr", descricao_pr);
-                cmd.Parameters.AddWithValue("@local_problema", local_problema);
+                cmd.Parameters.AddWithValue("@local_caso", local_problema);
                 cmd.Parameters.AddWithValue("@nivel_risco", val_nivel_risco);
                 cmd.Parameters.AddWithValue("@data_pr", data_problema);
                 cmd.Parameters.AddWithValue("@setor_pr", setor_pr);
