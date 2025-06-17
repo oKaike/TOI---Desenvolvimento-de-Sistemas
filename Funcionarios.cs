@@ -138,18 +138,34 @@ namespace DLL
                 conn.Close();
             }
         }
-        public void ExcluirFun()
+        public void ListarEExcluirFuncionario()
         {
-            Console.Write("Deletar funcionario(Preencha as informações)\n");
-            Console.WriteLine("Nome:");
-            string nome_funex = Console.ReadLine();
-
             ConexaoBD banco = new ConexaoBD();
             using (MySqlConnection conn = banco.Conectar())
             {
-                string query = "delete funcionarios where nome_fun = @nome_fun";
-                MySqlCommand cmd = new MySqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@nome_fun", nome_funex);
+                try
+                {
+                    conn.Open();
+
+                    // 1. Listar funcionários
+                    string queryListar = "SELECT id_fun, nome_fun FROM funcionarios";
+                    MySqlCommand cmdListar = new MySqlCommand(queryListar, conn);
+
+                    using (MySqlDataReader reader = cmdListar.ExecuteReader())
+                    {
+                        Console.WriteLine("Funcionários cadastrados:\n");
+                        while (reader.Read())
+                        {
+                            int id = reader.GetInt32("id_fun");
+                            string nome = reader.GetString("nome_fun");
+
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Erro ao listar funcionários: " + ex.Message);
+                }
             }
         }
     }

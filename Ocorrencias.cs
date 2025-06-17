@@ -140,10 +140,64 @@ namespace DLL
 
             }
         }
-        public void ApagarOC()
+        public void ListarEExcluirOcorrencia()
         {
+            ConexaoBD banco = new ConexaoBD();
+            using (MySqlConnection conn = banco.Conectar())
+            {
+                conn.Open();
 
+                // 1. Listar ocorrências
+                string listarQuery = "SELECT id_oc, tipo_oc, data_hora_ocorrido FROM ocorrencias";
+                MySqlCommand listarCmd = new MySqlCommand(listarQuery, conn);
 
+                Console.WriteLine("\nOcorrências registradas:\n");
+
+                using (MySqlDataReader reader = listarCmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int id = reader.GetInt32("id_oc");
+                        string tipo = reader.GetString("tipo_oc");
+                        DateTime data = reader.GetDateTime("data_hora_ocorrido");
+
+                        Console.WriteLine($"ID: {id} | Tipo: {tipo} | Data/Hora: {data}");
+                    }
+                }
+
+                // 2. Escolher ID para exclusão
+                Console.Write("\nDigite o ID da ocorrência que deseja excluir (ou 0 para cancelar): ");
+                if (int.TryParse(Console.ReadLine(), out int idExcluir) && idExcluir != 0)
+                {
+                    Console.Write("Tem certeza que deseja excluir? (s/n): ");
+                    string confirmacao = Console.ReadLine().ToLower();
+
+                    if (confirmacao == "s")
+                    {
+                        string deleteQuery = "DELETE FROM ocorrencias WHERE id_oc = @id_oc";
+                        MySqlCommand deleteCmd = new MySqlCommand(deleteQuery, conn);
+                        deleteCmd.Parameters.AddWithValue("@id_oc", idExcluir);
+
+                        int resultado = deleteCmd.ExecuteNonQuery();
+
+                        if (resultado > 0)
+                            Console.WriteLine("Ocorrência excluída com sucesso!");
+                        else
+                            Console.WriteLine("Nenhuma ocorrência encontrada com esse ID.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Exclusão cancelada.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Operação cancelada ou ID inválido.");
+                }
+
+                conn.Close();
+            }
         }
+
     }
 }

@@ -40,23 +40,48 @@ namespace DLL
             }
         }
 
-        public void ExcluirSetor()
+        public void ListarEExcluirSetor()
         {
             ConexaoBD banco = new ConexaoBD();
             using (MySqlConnection conn = banco.Conectar())
             {
-                Console.Write("Deletar Setor(Preencha as informações)\n");
-                Console.Write("Nome:");
-                string nome_setorex = Console.ReadLine();
+                try
+                {
+                    conn.Open();
 
-                string query = "delete from CadastrarSetor where nome_setor = @nome_setor";
-                MySqlCommand cmd = new MySqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@nome_setor", nome_setorex);
+                    // 1. Listar setores
+                    string queryListar = "SELECT id, nome_setor FROM CadastrarSetor";
+                    MySqlCommand cmdListar = new MySqlCommand(queryListar, conn);
 
-                conn.Open();
-                cmd.ExecuteNonQuery();
-                conn.Close();
+                    using (MySqlDataReader reader = cmdListar.ExecuteReader())
+                    {
+                        Console.WriteLine("Setores disponíveis:\n");
+                        while (reader.Read())
+                        {
+                            int id = reader.GetInt32("id");
+                            string nome = reader.GetString("nome_setor");
+                            Console.WriteLine($"ID: {id} | Nome: {nome}");
+                        }
+                    }
+
+                    // 2. Solicitar ID para exclusão
+                    Console.Write("\nDigite o ID do setor que deseja excluir: ");
+                    string input = Console.ReadLine();
+                    if (!int.TryParse(input, out int idSetor))
+                    {
+                        Console.WriteLine("ID inválido. Operação cancelada.");
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Erro ao listar ou excluir: {ex.Message}");
+                }
+                finally
+                {
+                    conn.Close();
+                }
             }
-        }
-    }
-}
+        } 
+       }
+} 

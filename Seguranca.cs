@@ -167,9 +167,43 @@ namespace DLL
                 conn.Close();
             }
         }
-        public void ExcluirSG()
+        public void ListarEExcluirSeguranca()
         {
+            ConexaoBD banco = new ConexaoBD();
+            using (MySqlConnection conn = banco.Conectar())
+            {
+                conn.Open();
 
+                string listarQuery = "SELECT id_sg, Nome_sg, cpf FROM SegurancaUser";
+                MySqlCommand listarCmd = new MySqlCommand(listarQuery, conn);
+
+                Console.WriteLine("\n🔐 Lista de Seguranças Cadastrados:\n");
+
+                using (MySqlDataReader reader = listarCmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int id = reader.GetInt32("id_sg");
+                        string nome = reader.GetString("Nome_sg");
+                        string cpf = reader.GetString("cpf");
+
+                        Console.WriteLine($"ID: {id} | Nome: {nome} | CPF: {cpf}");
+                    }
+                }
+
+                Console.Write("\nDigite o ID do segurança que deseja excluir (ou 0 para cancelar): ");
+                if (int.TryParse(Console.ReadLine(), out int idExcluir) && idExcluir != 0)
+                {
+                    Console.Write("Tem certeza que deseja excluir? (s/n): ");
+                    string confirmar = Console.ReadLine().ToLower();
+
+                    if (confirmar == "s")
+                    {
+                        string deleteQuery = "DELETE FROM SegurancaUser WHERE id_sg = @id";
+
+                    }
+                }
+            }
         }
     }
 }

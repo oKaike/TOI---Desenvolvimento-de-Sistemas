@@ -126,7 +126,45 @@ namespace DLL_TOI
                         if (opcao == "5")
                         {
                             Console.WriteLine("Escolha uma das opções:");
-                            Console.WriteLine("Você escolheu excluir um arquivo:");
+                            Console.WriteLine("1 - Excluir Segurança\n2 - Excluir Funcionário\n3 - Excluir Setor\n4 - Excluir Problema\n5 - Excluir Ocorrência\n6 - Excluir Imagem\n7 - Excluir Gravacão");
+                        Console.Write("Sua opção: ");
+                            string opcaoExcluir = Console.ReadLine();
+                            if (opcaoExcluir == "1") { 
+                           Seguranca exsg = new Seguranca();
+                                exsg.ListarEExcluirSeguranca();
+                            }
+                            else if(opcaoExcluir == "2"){
+                                Funcionarios exf = new Funcionarios();
+                                exf.ListarEExcluirFuncionario();
+                            }
+                            else if (opcaoExcluir == "3")
+                            {
+                                CadastrarSetor exset = new CadastrarSetor();
+                                exset.ListarEExcluirSetor();
+                            }
+                            else if (opcaoExcluir == "4")
+                            {
+                                Problema expr = new Problema();
+                                expr.ListarEExcluirProblemas();
+                            }
+                            else if (opcaoExcluir == "5")
+                            {
+                                Ocorrencias exoc = new Ocorrencias();
+                                exoc.ListarEExcluirOcorrencia();
+                            }
+                            else if (opcaoExcluir == "6") {
+                            Imagens eximg = new Imagens();
+                                eximg.ListarEExcluirImagem();
+                            }
+                            else if (opcaoExcluir == "7")
+                            {
+                                Gravacao exgrav = new Gravacao();
+                                exgrav.ListarEExcluirGravacoes();
+                            }
+                            else
+                            {
+                                Console.WriteLine("Opção inválida. Tente novamente.");
+                            }
 
                         }
                     }

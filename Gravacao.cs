@@ -103,9 +103,70 @@ namespace DLL
             }
         }
 
-        public void ExcluirGrav()
+        public void ListarEExcluirGravacoes()
         {
+            ConexaoBD banco = new ConexaoBD();
 
+            using (MySqlConnection conn = banco.Conectar())
+            {
+                string queryListar = "SELECT id, Titulo_GRV, data_gravacao FROM gravacoes";
+                MySqlCommand cmdListar = new MySqlCommand(queryListar, conn);
+
+                conn.Open();
+                using (MySqlDataReader reader = cmdListar.ExecuteReader())
+                {
+                    Console.WriteLine("\n🎥 Gravações Cadastradas:");
+                    Console.WriteLine("--------------------------------------------------");
+                    while (reader.Read())
+                    {
+                        int id = reader.GetInt32("id");
+                        string titulo = reader.GetString("Titulo_GRV");
+                        DateTime data = reader.GetDateTime("data_gravacao");
+
+                        Console.WriteLine($"ID: {id} | Título: {titulo} | Data: {data.ToShortDateString()}");
+                    }
+                }
+                conn.Close();
+
+                Console.Write("\nDigite o ID da gravação que deseja excluir (ou ENTER para cancelar): ");
+                string input = Console.ReadLine();
+
+                if (string.IsNullOrWhiteSpace(input))
+                {
+                    Console.WriteLine("❎ Operação cancelada.");
+                    return;
+                }
+
+                int idExcluir;
+                if (!int.TryParse(input, out idExcluir))
+                {
+                    Console.WriteLine("⚠️ ID inválido.");
+                    return;
+                }
+
+                Console.Write($"Tem certeza que deseja excluir a gravação ID {idExcluir}? (s/n): ");
+                string confirmacao = Console.ReadLine();
+
+                if (confirmacao.ToLower() != "s")
+                {
+                    Console.WriteLine("❎ Exclusão cancelada.");
+                    return;
+                }
+
+                string queryExcluir = "DELETE FROM gravacoes WHERE id = @id";
+                MySqlCommand cmdExcluir = new MySqlCommand(queryExcluir, conn);
+                cmdExcluir.Parameters.AddWithValue("@id", idExcluir);
+
+                conn.Open();
+                int rows = cmdExcluir.ExecuteNonQuery();
+                conn.Close();
+
+                if (rows > 0)
+                    Console.WriteLine("Gravação excluída com sucesso!");
+                else
+                    Console.WriteLine("Nenhuma gravação encontrada com esse ID.");
+            }
         }
+
     }
 }

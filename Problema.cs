@@ -113,5 +113,76 @@ namespace DLL
 
             }
         }
+        public void ListarEExcluirProblemas()
+        {
+            ConexaoBD banco = new ConexaoBD();
+
+            using (MySqlConnection conn = banco.Conectar())
+            {
+                string queryListar = "SELECT id, titulo_pr, descricao, nivel_risco, data_pr, setor_pr FROM problemas";
+                MySqlCommand cmdListar = new MySqlCommand(queryListar, conn);
+
+                conn.Open();
+                using (MySqlDataReader reader = cmdListar.ExecuteReader())
+                {
+                    Console.WriteLine("\nProblemas Registrados:");
+                    Console.WriteLine("--------------------------------------------------");
+
+                    while (reader.Read())
+                    {
+                        int id = reader.GetInt32("id");
+                        string titulo = reader.GetString("titulo_pr");
+                        string desc = reader.GetString("descricao");
+                        string risco = reader.GetString("nivel_risco");
+                        DateTime data = reader.GetDateTime("data_pr");
+                        string setor = reader.IsDBNull(reader.GetOrdinal("setor_pr")) ? "Não informado" : reader.GetString("setor_pr");
+
+                        Console.WriteLine($"ID: {id} | Título: {titulo} | Setor: {setor} | Risco: {risco} | Data: {data.ToShortDateString()}");
+                        Console.WriteLine($"Descrição: {desc}");
+                        Console.WriteLine("--------------------------------------------------");
+                    }
+                }
+                conn.Close();
+
+                Console.Write("\nDigite o ID do problema que deseja excluir (ou pressione ENTER para cancelar): ");
+                string input = Console.ReadLine();
+
+                if (string.IsNullOrWhiteSpace(input))
+                {
+                    Console.WriteLine("Exclusão cancelada.");
+                    return;
+                }
+
+                int idExcluir;
+                if (!int.TryParse(input, out idExcluir))
+                {
+                    Console.WriteLine("ID inválido.");
+                    return;
+                }
+
+                Console.Write($"Tem certeza que deseja excluir o problema ID {idExcluir}? (s/n): ");
+                string confirmacao = Console.ReadLine();
+
+                if (confirmacao.ToLower() != "s")
+                {
+                    Console.WriteLine("Exclusão cancelada.");
+                    return;
+                }
+
+                string queryExcluir = "DELETE FROM problemas WHERE id = @id";
+                MySqlCommand cmdExcluir = new MySqlCommand(queryExcluir, conn);
+                cmdExcluir.Parameters.AddWithValue("@id", idExcluir);
+
+                conn.Open();
+                int rows = cmdExcluir.ExecuteNonQuery();
+                conn.Close();
+
+                if (rows > 0)
+                    Console.WriteLine("Problema excluído com sucesso!");
+                else
+                    Console.WriteLine("Nenhum problema encontrado com esse ID.");
+            }
+        }
+
     }
 }
