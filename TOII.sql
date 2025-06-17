@@ -82,8 +82,7 @@ CREATE TABLE ocorrencias (
     registradopor VARCHAR(55),
     qtdade_envolvidos INT
 );
-
--- Tabela: painel_estatistica
+--- Tabela: painel_estatistica
 CREATE TABLE painel_estatistica (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     quantidade_problemas INT,
